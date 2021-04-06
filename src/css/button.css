@@ -1,0 +1,9 @@
+button{
+    background-color: black;
+    padding: 20px;
+    border: unset;
+    color: #eee;
+}
+button:active{
+    border: inset;
+}
