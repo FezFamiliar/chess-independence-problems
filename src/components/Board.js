@@ -11,14 +11,14 @@ class Board extends Component {
 
         this.state = {
             board: [
+                [1, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 1],
                 [0, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 1, 0, 0, 1, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
+                [1, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 1, 0, 0, 0],
             ],
             index: 1
 
@@ -28,6 +28,7 @@ class Board extends Component {
         this.flag = Array(8).fill(false);
         this.n = this.v.length;
         permutate(this.k, this.n, this.v, this.flag);
+        console.log(this.perm);
     }
 
     init(perm) {
@@ -46,20 +47,20 @@ class Board extends Component {
             }
         }
 
-       return this.state.board;
+        this.setState({ board: this.state.board});
     }
 
-    next = () => {
-        console.log(perm);
-        this.setState({ index: this.state.index + 1});
-    }
 
     render() {
 
       return (
       <div className="board">            
-            {this.init(perm)}      
-            <button onClick={this.next.bind(this)}> next</button>
+            {this.state.board.map((col, i) => 
+            (
+                col.map((item, j) => {
+                        return ((i + j) % 2 == 1) ? (item == 1) ? <Square className={'square'} IsValid={true}/> : <Square className={'square'}/> : (item == 1) ? <Square IsValid={true}/> : <Square />
+                }))
+            )}      
       </div>
       )
     }
