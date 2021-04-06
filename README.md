@@ -6,3 +6,6 @@ The very first problem is the well-known 8-queen problem, which states as follow
 One possible solution is this permutation:
 
 
+![first permutation](public/q.png)
+
+
