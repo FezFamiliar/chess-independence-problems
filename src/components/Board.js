@@ -20,14 +20,26 @@ class Board extends Component {
                 [0, 0, 0, 0, 0, 0, 0, 0],
                 [0, 0, 0, 0, 0, 0, 0, 0],
             ],
-            index: 0
+            index: 0,
+            queen_total: 92
         }
 
     }
 
-    handleClick = () => {
+    handleNextEvent = () => {       // print the board, then increment the index
+        
+        if(this.state.index < this.state.queen_total)
+        {
+            this.setState({board: perm[this.state.index], index: this.state.index + 1});
+        }
+    }
 
-        this.setState({board: perm[3]});
+    handleBackEvent = () => {           // first decremenet the index, then print the board
+        
+        if(this.state.index > 0 && this.state.index < this.state.queen_total)
+        {
+            this.setState({board: perm[this.state.index], index: this.state.index - 1});
+        }
     }
 
     render() {
@@ -40,7 +52,9 @@ class Board extends Component {
                         return ((i + j) % 2 == 1) ? (item == 1) ? <Square className={'square'} IsValid={true}/> : <Square className={'square'}/> : (item == 1) ? <Square IsValid={true}/> : <Square />
                 }))
             )}      
-            <button onClick={this.handleClick}>next</button>
+            <button onClick={this.handleNextEvent}>next</button>
+            dfd
+            <button onClick={this.handleBackEvent}>back</button>
       </div>
      
       )
