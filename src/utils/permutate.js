@@ -1,7 +1,6 @@
 export var perm = [];
 
-export function permutate(k, n, sol, flag) {
-
+function permutate(k, n, sol, flag) {
     if(k >= n)
     {
         if(!queen_collision(sol, n))
@@ -25,7 +24,7 @@ export function permutate(k, n, sol, flag) {
 }
 
 
-export function queen_collision(permutation, n) {
+function queen_collision(permutation, n) {
 
     for (let i = 0; i < n; ++i) {
         for (let j = i + 1; j < n; ++j) {
@@ -40,7 +39,7 @@ export function queen_collision(permutation, n) {
 
 
 
-export function print_queens(permutation, n) {
+function print_queens(permutation, n) {
 
     let r = [
         [0, 0, 0, 0, 0, 0, 0, 0],
@@ -63,3 +62,10 @@ export function print_queens(permutation, n) {
 
     return r;
 }
+
+export function something()
+{
+    console.log('ff');
+}
+
+permutate(0, 8, [0, 0, 0, 0, 0, 0, 0, 0], Array(8).fill(false));
