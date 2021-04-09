@@ -1,3 +1,8 @@
+# Installation
+
+Just clone the repo and run ```npm install```
+
+
 # Chess Independence Problems
 
 
