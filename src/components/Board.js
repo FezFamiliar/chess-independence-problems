@@ -12,35 +12,46 @@ class Board extends Component {
         super(props);
         this.state = {
             board: [
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 0, 0, 0],
+                [1, 0, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 1, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 0, 1],
+                [0, 0, 0, 0, 0, 1, 0, 0],
+                [0, 0, 1, 0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0, 0, 1, 0],
+                [0, 1, 0, 0, 0, 0, 0, 0],
+                [0, 0, 0, 1, 0, 0, 0, 0],
             ],
-            index: 0,
+            index: 1,
             queen_total: 92,
             color: '#2E2D88'
         }
 
     }
 
-    handleNextEvent = () => {       // print the board, then increment the index
-        
+    handleNextEvent = () => {   
+        console.log(perm);
         if(this.state.index < this.state.queen_total)
         {
             this.setState({board: perm[this.state.index], index: this.state.index + 1});
         }
     }
 
-    handleBackEvent = () => {           // first decremenet the index, then print the board
+    handleBackEvent = () => {       
         
-        if(this.state.index > 0 && this.state.index < this.state.queen_total)
+        if(this.state.index > 1 && this.state.index < this.state.queen_total)
         {
-            this.setState({board: perm[this.state.index], index: this.state.index - 1});
+            this.setState({index: this.state.index - 1},
+                    () => {
+
+                        console.log('state index: ' + this.state.index);
+                        let aux = this.state.index;
+                        if(aux > 0)
+                        {
+                            this.setState({board: perm[--aux]});
+                        }
+                    
+                    }
+                );
         }
     }
 
@@ -55,20 +66,21 @@ class Board extends Component {
     render() {
 
       return (
-      <div className="board">
-            {this.state.board.map((col, i) => 
-            (
-                col.map((item, j) => {
-                        return ((i + j) % 2 == 1) ? (item == 1) ? <Square style={{ backgroundColor: this.state.color }} IsValid={true}/> : <Square style={{ backgroundColor: this.state.color }}/> : (item == 1) ? <Square IsValid={true}/> : <Square />
-                }))
-            )}      
+          <>
+            <p>permutation: {this.state.index} / {this.state.queen_total}</p>
             <button onClick={this.handleNextEvent}>next</button>
-            ---
+            <div className="board">
+                    
+                    {this.state.board.map((col, i) => 
+                    (
+                        col.map((item, j) => {
+                                return ((i + j) % 2 == 1) ? (item == 1) ? <Square style={{ backgroundColor: this.state.color }} IsValid={true}/> : <Square style={{ backgroundColor: this.state.color }}/> : (item == 1) ? <Square IsValid={true}/> : <Square />
+                        }))
+                    )}
+                    <button onClick={this.handleChangeBoardColorEvent}>Change board</button>
+            </div>
             <button onClick={this.handleBackEvent}>back</button>
-            ---
-            <button onClick={this.handleChangeBoardColorEvent}>Change board</button>
-      </div>
-     
+        </>
       )
     }
 }
