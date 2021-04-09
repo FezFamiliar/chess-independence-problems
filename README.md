@@ -9,3 +9,6 @@ One possible solution is this permutation:
 ![first permutation](public/q.png)
 
 
+
+We can represent each solution with a distinct permutation of a set containing positive integers from 1 to 8. The above picture would transpose to the folloowing permutation: ***[5, 2, 4, 7, 3, 8, 6, 1]*** There are ***92*** total solutions to this problem and ***8! = 1 * 2 * 3 * ... * 8 = 40320*** total [permutations](https://en.wikipedia.org/wiki/Permutation).
+
