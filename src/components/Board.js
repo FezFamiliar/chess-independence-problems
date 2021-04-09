@@ -6,6 +6,7 @@ import { perm } from '../utils/permutate.js';
 
 class Board extends Component {
 
+
     constructor(props)
     {
         super(props);
@@ -21,7 +22,8 @@ class Board extends Component {
                 [0, 0, 0, 0, 0, 0, 0, 0],
             ],
             index: 0,
-            queen_total: 92
+            queen_total: 92,
+            color: '#2E2D88'
         }
 
     }
@@ -42,6 +44,14 @@ class Board extends Component {
         }
     }
 
+    handleChangeBoardColorEvent = () => {
+
+        let colors = ['#0247FE', '#008000', '#DE5D83', '#00BFFF', '#9932CC', '#893F45', '#FFD300', '#2E2D88'];
+        let rand = Math.floor(Math.random() * 10) % colors.length;
+      
+        this.setState({color: colors[rand]});
+    }
+
     render() {
 
       return (
@@ -49,12 +59,14 @@ class Board extends Component {
             {this.state.board.map((col, i) => 
             (
                 col.map((item, j) => {
-                        return ((i + j) % 2 == 1) ? (item == 1) ? <Square className={'square'} IsValid={true}/> : <Square className={'square'}/> : (item == 1) ? <Square IsValid={true}/> : <Square />
+                        return ((i + j) % 2 == 1) ? (item == 1) ? <Square style={{ backgroundColor: this.state.color }} IsValid={true}/> : <Square style={{ backgroundColor: this.state.color }}/> : (item == 1) ? <Square IsValid={true}/> : <Square />
                 }))
             )}      
             <button onClick={this.handleNextEvent}>next</button>
-            dfd
+            ---
             <button onClick={this.handleBackEvent}>back</button>
+            ---
+            <button onClick={this.handleChangeBoardColorEvent}>Change board</button>
       </div>
      
       )

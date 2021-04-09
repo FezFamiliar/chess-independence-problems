@@ -8,7 +8,7 @@ class Square extends Component {
     }
 
     render() {
-      return <div className={this.props.className}>{this.place_queen(this.props)}</div>;
+      return <div style={this.props.style}>{this.place_queen(this.props)}</div>;
     }
 
 
