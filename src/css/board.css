@@ -5,3 +5,8 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+#sidebar a
+{ 
+    display: block;
+}

@@ -63,9 +63,4 @@ function print_queens(permutation, n) {
     return r;
 }
 
-export function something()
-{
-    console.log('ff');
-}
-
 permutate(0, 8, [0, 0, 0, 0, 0, 0, 0, 0], Array(8).fill(false));
