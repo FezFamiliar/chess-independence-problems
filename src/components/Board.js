@@ -5,6 +5,7 @@ import NextButton from './NextButton'
 import { Link } from 'react-router-dom'
 
 import { perm } from '../utils/permutate.js';
+import { r_perm } from '../utils/rooks.js';
 
 class Board extends Component {
 
@@ -24,9 +25,11 @@ class Board extends Component {
                 [0, 0, 0, 1, 0, 0, 0, 0],
             ],
             index: 1,
-            queen_total: 92,
+            n: 92,
+            default: '8 - queens',
+            helper_array: perm,
             color: '#2E2D88',
-            piece: 'queen'
+            problem: '8 - queens'
         }
 
     }
@@ -76,14 +79,14 @@ class Board extends Component {
       return (
           <>
             <ul id="sidebar">
-                <Link to={{pathname: '/rooks'}} className='menu-bars' key="rook" onClick={() => this.setState({piece: 'rook'})}>
-                    Rooks
+                <Link to={{pathname: '/rooks'}} className='menu-bars' key="rook" onClick={() => this.setState({helper_array: r_perm})}>
+                    8 - Rooks
                 </Link>
                 <Link to={{pathname: '/bishops'}} className='menu-bars' key="bishop" onClick={() => this.setState({piece: 'bishop'})}>
                     Bishops
                 </Link>
-                <Link to={{pathname: '/queens'}} className='menu-bars' key="queen"  onClick={() => this.setState({piece: 'queen'})}>
-                    Queens
+                <Link to={{pathname: '/queens'}} className='menu-bars' key="queen"  onClick={() => this.setState({helper_array: perm})}>
+                    8 - Queens
                 </Link>
                 <Link to={{pathname: '/knights'}} className='menu-bars' key="knight" onClick={() => this.setState({piece: 'knight'})}>
                     Knights
